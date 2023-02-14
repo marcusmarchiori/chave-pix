@@ -2,6 +2,7 @@ package com.desafio.chavepix.domain;
 
 import java.util.Date;
 
+
 public class Customer {
 
     private Long id;

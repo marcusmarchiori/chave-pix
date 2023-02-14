@@ -1,9 +1,6 @@
 package com.desafio.chavepix.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.desafio.chavepix.enums.StatesEnum;
 
 public class Address {
 
@@ -19,6 +16,6 @@ public class Address {
 
     private String city;
 
-    private String state;
+    private StatesEnum state;
 
 }
