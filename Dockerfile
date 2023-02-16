@@ -1,4 +1,4 @@
 FROM openjdk:17
-ARG JAR_FILE=out/artifacts/chave_pix_jar/*.jar
-COPY ${JAR_FILE} pix.jar
-ENTRYPOINT ["java", "-jar", "/pix.jar"]
+MAINTAINER Marcus Marchiori
+COPY build/libs/*.jar app.jar
+ENTRYPOINT ["java", "-jar","app.jar"]
