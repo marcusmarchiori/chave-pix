@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
@@ -16,18 +17,20 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "account")
-public class Account {
+public class Account implements Serializable {
 
+    private static final long serialVersionUID = -8985397890752995777L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_account")
     private Long id;
 
-    @Column(name = "type_account")
-    private TypeAccountEnum typeAccountEnum;
-
     @Column(name = "bank_name")
     private String bankName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_account")
+    private TypeAccountEnum typeAccountEnum;
 
     @Column(name = "num_account")
     private Long numAccount;
@@ -35,6 +38,7 @@ public class Account {
     @Column(name = "balance_account")
     private BigDecimal balanceAccount;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "type_key")
     private TypeKeyEnum typeKeyEnum;
 

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -15,12 +16,21 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
 
+    private static final long serialVersionUID = 49766340824929394L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_customer")
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "id_address")
+    private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "id_account")
+    private Account account;
 
     @Column(name = "name")
     private String name;
