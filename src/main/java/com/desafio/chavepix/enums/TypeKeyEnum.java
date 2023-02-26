@@ -4,5 +4,5 @@ public enum TypeKeyEnum {
     EMAIL,
     DOCUMENT,
     TELEPHONE,
-    ALEATORY_KEY;
+    RANDOM_KEY;
 }
