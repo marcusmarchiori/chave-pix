@@ -31,6 +31,11 @@ public class AccountDTO {
 
     private String keyPix;
 
+    public Account convertToAccount(){
+        return new Account(id, bankName, typeAccountEnum, numAccount,
+                balanceAccount, typeKeyEnum, keyPix);
+    }
+
     public AccountDTO(Account account) {
         id = account.getId();
         bankName = account.getBankName();
