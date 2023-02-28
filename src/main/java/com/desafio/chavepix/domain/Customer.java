@@ -1,4 +1,4 @@
-package com.desafio.chavepix.domains;
+package com.desafio.chavepix.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

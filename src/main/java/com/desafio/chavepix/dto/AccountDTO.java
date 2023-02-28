@@ -3,7 +3,6 @@ package com.desafio.chavepix.dto;
 import com.desafio.chavepix.domain.Account;
 import com.desafio.chavepix.enums.TypeAccountEnum;
 import com.desafio.chavepix.enums.TypeKeyEnum;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

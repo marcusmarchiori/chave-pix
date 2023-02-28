@@ -1,4 +1,4 @@
-package com.desafio.chavepix.domains;
+package com.desafio.chavepix.domain;
 
 import com.desafio.chavepix.enums.StatesEnum;
 import jakarta.persistence.*;

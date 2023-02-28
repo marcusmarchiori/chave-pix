@@ -14,18 +14,24 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
+import static springfox.documentation.builders.PathSelectors.regex;
+
 @EnableSwagger2WebMvc
 @EnableSwagger2WebFlux
 public class SwaggerConfig {
+
+    // Outra versão utilizada:
+    // 	implementation "io.springfox:springfox-swagger2:2.7.0"
+    //	implementation "io.springfox:springfox-swagger-ui:2.7.0"
+    // 2.9.2 também
 
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors
-                        .basePackage("com.desafio.chavepix.resource"))
-                .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.desafio.chavepix"))
+                .paths(regex("/accounts"))
                 .build()
                 .apiInfo(apiInfo());
     }

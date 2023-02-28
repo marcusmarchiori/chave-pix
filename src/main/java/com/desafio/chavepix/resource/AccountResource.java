@@ -4,6 +4,7 @@ import com.desafio.chavepix.domain.Account;
 import com.desafio.chavepix.dto.AccountDTO;
 import com.desafio.chavepix.repository.AccountRepository;
 import com.desafio.chavepix.service.AccountService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
+@Api(value = "API REST")
 public class AccountResource {
 
     @Autowired
@@ -24,9 +26,10 @@ public class AccountResource {
         return accountService.findAll();
     }
 
-    @GetMapping("/list/{id}")
-    public AccountDTO listById(@PathVariable(value = "id") Long id){
-        return accountService.findById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountDTO> listById(@PathVariable(value = "id") Long id){
+        AccountDTO accountDTO = accountService.findById(id);
+        return ResponseEntity.ok(accountDTO);
     }
 
 

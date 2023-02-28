@@ -15,20 +15,17 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    // LISTAR TODAS CONTAS
     public List<AccountDTO> findAll(){
         List<Account> accounts = accountRepository.findAll();
         return accounts.stream().map(i -> new AccountDTO(i)).collect(Collectors.toList());
     }
 
-    // LISTAR BUSCANDO POR ID
     public AccountDTO findById(Long id){
         Account account = accountRepository.findById(id).get();
         AccountDTO accountDTO = new AccountDTO(account);
         return accountDTO;
     }
 
-    // DELETAR CONTA POR ID
     public void deleteById(Long id){
         accountRepository.deleteById(id);
     }
