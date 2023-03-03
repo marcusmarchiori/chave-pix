@@ -28,9 +28,9 @@ public class Account implements Serializable {
     @Column(name = "bank_name")
     private String bankName;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     @Column(name = "type_account")
-    private TypeAccountEnum typeAccountEnum;
+    private String typeAccountEnum;
 
     @Column(name = "num_account")
     private Long numAccount;
@@ -38,9 +38,9 @@ public class Account implements Serializable {
     @Column(name = "balance_account")
     private BigDecimal balanceAccount;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     @Column(name = "type_key")
-    private TypeKeyEnum typeKeyEnum;
+    private String typeKeyEnum;
 
     @Column(name = "key_pix")
     private String keyPix;

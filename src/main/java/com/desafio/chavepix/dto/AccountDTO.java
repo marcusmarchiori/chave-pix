@@ -20,13 +20,13 @@ public class AccountDTO {
 
     private String bankName;
 
-    private TypeAccountEnum typeAccountEnum;
+    private String typeAccountEnum;
 
     private Long numAccount;
 
     private BigDecimal balanceAccount;
 
-    private TypeKeyEnum typeKeyEnum;
+    private String typeKeyEnum;
 
     private String keyPix;
 
