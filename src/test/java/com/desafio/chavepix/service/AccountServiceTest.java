@@ -86,7 +86,6 @@ public class AccountServiceTest {
         assertNotNull(response);
         assertEquals(AccountDTO.class, response.getClass());
         assertEquals(ID, response.getId());
-
     }
 
     @Test
@@ -105,9 +104,10 @@ public class AccountServiceTest {
     public void deleteWithSuccess(){
         when(accountRepository.findById(anyLong())).thenReturn(Optional.of(account));
         doNothing().when(accountRepository).deleteById(anyLong());
-        accountService.deleteById(ID);
+        accountService.deleteById(ID); // Método da classe service
 
         verify(accountRepository, times(1)).deleteById(anyLong());
+        // Verificar quantas vezes o deleteById foi chamado
     }
 
 }
