@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -18,7 +16,11 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountServiceTest {
@@ -33,6 +35,7 @@ public class AccountServiceTest {
 
     private void startAccount(){
         account = new Account(ID, BANK_NAME, PJ, NUM_ACCOUNT, BALANCE, TYPE_KEY, KEY);
+        accountDTO = new AccountDTO(ID, BANK_NAME, PJ, NUM_ACCOUNT, BALANCE, TYPE_KEY, KEY);
     }
 
     @InjectMocks
@@ -42,6 +45,7 @@ public class AccountServiceTest {
     AccountRepository accountRepository;
 
     private Account account;
+    private AccountDTO accountDTO;
 
     @BeforeEach
     void setUp(){
@@ -55,22 +59,55 @@ public class AccountServiceTest {
 
         List<AccountDTO> response = accountService.findAll();
 
-        Assertions.assertNotNull(response);
-        Assertions.assertEquals(1, response.size());
-        Assertions.assertEquals(AccountDTO.class, response.get(0).getClass()); // Assegurar que o obj do index 0 seja = classe AccountDTO
-        Assertions.assertEquals(ID, response.get(0).getId());
+        assertNotNull(response);
+        assertEquals(1, response.size());
+        assertEquals(AccountDTO.class, response.get(0).getClass()); // Assegurar que o obj do index 0 seja = classe AccountDTO
+        assertEquals(ID, response.get(0).getId());
     }
 
     @Test
-    public void testFindById(){
+    public void whenFindByIdThenReturnSpecific(){
         when(accountRepository.findById(ID)).thenReturn(Optional.of(account));
 
         AccountDTO response = accountService.findById(ID);
 
-        Assertions.assertNotNull(response);
-        Assertions.assertEquals(AccountDTO.class, response.getClass());
-        Assertions.assertEquals(ID, response.getId());
-        Assertions.assertEquals(BANK_NAME, response.getBankName());
+        assertNotNull(response);
+        assertEquals(AccountDTO.class, response.getClass());
+        assertEquals(ID, response.getId());
+        assertEquals(BANK_NAME, response.getBankName());
+    }
+
+    @Test
+    public void whenSaveThenReturnSuccess(){
+        when(accountRepository.save(any())).thenReturn(account);
+
+        AccountDTO response = accountService.save(accountDTO);
+
+        assertNotNull(response);
+        assertEquals(AccountDTO.class, response.getClass());
+        assertEquals(ID, response.getId());
+
+    }
+
+//    @Test
+//    public void whenUpdateThenReturnSuccess(){
+//        when(accountRepository.getById(ID)).thenReturn(account); // Buscando por id e retornando account
+//
+//        AccountDTO response = accountService.update(ID, accountDTO);
+//        //verify(accountRepository.getById(ID));
+////        Assertions.assertNotNull(response);
+////        Assertions.assertEquals(AccountDTO.class, response.getClass());
+////        Assertions.assertEquals(ID, response.getId());
+//
+//    }
+
+    @Test
+    public void deleteWithSuccess(){
+        when(accountRepository.findById(anyLong())).thenReturn(Optional.of(account));
+        doNothing().when(accountRepository).deleteById(anyLong());
+        accountService.deleteById(ID);
+
+        verify(accountRepository, times(1)).deleteById(anyLong());
     }
 
 }

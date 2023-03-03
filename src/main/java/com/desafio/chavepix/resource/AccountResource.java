@@ -32,7 +32,6 @@ public class AccountResource {
         return ResponseEntity.ok(accountDTO);
     }
 
-
     @PostMapping("/save")
     public ResponseEntity<AccountDTO> save(@RequestBody AccountDTO accountDTO){
         accountDTO = accountService.save(accountDTO);
