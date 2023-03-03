@@ -1,8 +1,6 @@
 package com.desafio.chavepix.resource;
 
-import com.desafio.chavepix.domain.Account;
 import com.desafio.chavepix.dto.AccountDTO;
-import com.desafio.chavepix.repository.AccountRepository;
 import com.desafio.chavepix.service.AccountService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,8 @@ public class AccountResource {
     AccountService accountService;
 
     @GetMapping("/list")
-    public List<AccountDTO> listAll() {
-        return accountService.findAll();
+    public ResponseEntity<List<AccountDTO>> listAll() {
+        return ResponseEntity.ok().body(accountService.findAll());
     }
 
     @GetMapping("/{id}")
@@ -46,8 +44,9 @@ public class AccountResource {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id")Long id){
+    public ResponseEntity<AccountDTO> deleteById(@PathVariable Long id){
         accountService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

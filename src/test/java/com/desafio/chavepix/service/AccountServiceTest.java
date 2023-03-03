@@ -89,17 +89,17 @@ public class AccountServiceTest {
 
     }
 
-//    @Test
-//    public void whenUpdateThenReturnSuccess(){
-//        when(accountRepository.getById(ID)).thenReturn(account); // Buscando por id e retornando account
-//
-//        AccountDTO response = accountService.update(ID, accountDTO);
-//        //verify(accountRepository.getById(ID));
-////        Assertions.assertNotNull(response);
-////        Assertions.assertEquals(AccountDTO.class, response.getClass());
-////        Assertions.assertEquals(ID, response.getId());
-//
-//    }
+    @Test
+    public void whenUpdateThenReturnSuccess(){
+        when(accountRepository.getById(ID)).thenReturn(account); // Buscando por id e retornando account
+        when(accountRepository.save(account)).thenReturn(account);
+
+        AccountDTO response = accountService.update(ID, accountDTO);
+
+        Assertions.assertNotNull(response);
+        Assertions.assertEquals(AccountDTO.class, response.getClass());
+        Assertions.assertEquals(ID, response.getId());
+    }
 
     @Test
     public void deleteWithSuccess(){
